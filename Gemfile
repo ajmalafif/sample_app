@@ -4,6 +4,10 @@ gem 'rails', '3.0.9'
 gem 'sqlite3', '1.3.3'
 gem 'gravatar_image_tag', '1.0.0.pre2'
 
+group :production, :staging do
+  gem "pg"
+end
+
 group :development do
   gem 'rspec-rails', '2.0.0.beta.18'
   gem 'annotate', '2.4.0'
