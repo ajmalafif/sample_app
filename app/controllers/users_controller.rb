@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    redirect_to users.path, :flash => { :success => "User destroyed." }
+    redirect_to users_path, :flash => { :success => "User destroyed." }
   end
 
   private
