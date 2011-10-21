@@ -51,6 +51,21 @@ describe UsersController do
                                            :content => "Next")
                                           
       end
+      
+      it "should have delete links for admins" do
+        @user.toggle!(:admin)
+        other_user = User.all.second
+        get :index
+        response.should have_selector('a', :href => user_path(other_user),
+                                           :content => "delete")
+      end
+      
+      it "should not have delete links for non-admins" do
+        other_user = User.all.second
+        get :index
+        response.should_not have_selector('a', :href => user_path(other_user),
+                                           :content => "delete")
+      end
     end   
   end
 
@@ -271,6 +286,33 @@ describe UsersController do
           response.should redirect_to(root_path)
         end
       end
+    end
+    
+    describe "DElETE 'destroy'" do
       
-  end
+      before(:each) do
+        @user = Factory(:user)
+      end
+      
+      describe "as a non-signed-in user" do
+        it "should deny access" do
+          delete :destroy, :id => @user
+          response.should redirect_to(signin_path)
+        end
+      end
+      
+  end   
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
