@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Ruby on Rails Tutorial Sample App | <%= @title %></title>
-  </head>
-  <body>
-	
-	<% if signed_in? %>
+<% if signed_in? %>
 	
 	<table class="front" summary="For signed-in users">
 	    <tr>
 	      <td class="main">
 	        <h1 class="micropost">What's up?</h1>
 			<%= render 'shared/micropost_form' %>
+		  </td>
+		  <td class="sidebar round">
+			<%= render 'shared/user_info' %>
 		  </td>
 		 </tr>
 	</table>
@@ -28,6 +24,4 @@
 <%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
 
 	<% end %>
-
-  </body>
-</html>
+  
